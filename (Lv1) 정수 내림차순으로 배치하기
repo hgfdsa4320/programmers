@@ -1,0 +1,19 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+
+import java.util.*;
+
+class Solution {
+    public long solution(long n) {
+        char[] c = String.valueOf(n).toCharArray();
+        Arrays.sort(c);
+        
+        String s = new String(c);
+        StringBuffer sb = new StringBuffer(s);
+        
+        s = sb.reverse().toString();
+        long answer = Long.parseLong(s);
+        return answer;
+    }
+}
