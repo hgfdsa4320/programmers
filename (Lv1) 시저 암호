@@ -1,0 +1,30 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+ 
+ class Solution {
+    public String solution(String s, int n) {
+        String answer = "";
+        char[] arr = s.toCharArray();
+        char tmp;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==' '){
+                answer+=" ";
+            }else if(arr[i]>='a'&&arr[i]<='z'){
+                tmp = (char)(arr[i]+n);
+                if(tmp>'z'){
+                    tmp = (char)('a'+tmp-'z'-1);   
+                }
+                 answer+=tmp+"";
+            }else{
+                tmp = (char)(arr[i]+n);
+                if(tmp>'Z'){
+                    tmp = (char)('A'+tmp-'Z'-1);   
+                }
+                answer+=tmp+"";
+            }
+        }
+        
+        return answer;
+    }
+}
