@@ -1,0 +1,22 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+
+import java.util.*;
+
+class Solution {
+    public int solution(String t, String p) {
+        List<Long> list = new ArrayList<>();
+        
+        int answer = 0;
+        for(int i=0;i<t.length()-p.length()+1;i++){
+            list.add(Long.parseLong(t.substring(i,i+p.length())));
+        }
+        for(int i=0;i<list.size();i++){
+            if(list.get(i)<=Long.parseLong(p)){
+                answer++;
+            }
+        }
+        return answer;
+    }
+}
