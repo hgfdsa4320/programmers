@@ -1,0 +1,59 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+
+import java.util.*;
+
+class Solution {
+    public int[] solution(String[] park, String[] routes) {
+        // 북N, 동E, 남S, 서W
+        Map<String, Integer> directionMap = new HashMap<>();
+        directionMap.put("N",0); directionMap.put("E",1);
+        directionMap.put("S",2); directionMap.put("W",3);
+        
+        int[] dx = {-1,0,1,0};
+        int[] dy = {0,1,0,-1};
+        int x=0;
+        int y=0;
+        int[][] map = new int[park.length][park[0].length()];
+        for(int i=0;i<park.length;i++){
+            for(int j=0;j<park[0].length();j++){
+                if(park[i].charAt(j)=='S'){
+                    x = i;
+                    y = j;
+                    map[i][j]=0;
+                }else if(park[i].charAt(j)=='X'){
+                    map[i][j]=1;
+                }else{
+                    map[i][j]=0;
+                }
+            }
+        }
+
+        for(String route : routes){
+            String[] tmp = route.split(" ");
+            int d = directionMap.get(tmp[0]); // 방향
+            int n = Integer.parseInt(tmp[1]); // 횟수
+            int cnt=0;
+            int tmpX = x;
+            int tmpY = y;
+            for(int i=0;i<n;i++){
+                tmpX += dx[d];
+                tmpY += dy[d];;
+                if(tmpX>=0 && tmpX<park.length && tmpY>=0 
+                   && tmpY<park[i].length() && map[tmpX][tmpY]==0){
+                    cnt++;
+                }else{
+                    break;
+                }
+            }
+            if(cnt==n){
+                x = tmpX;
+                y = tmpY;
+            }
+            cnt=0;
+        }
+        int[] answer = {x,y};
+        return answer;
+    }
+}
