@@ -1,0 +1,27 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+ 
+ import java.util.*;
+
+class Solution {
+    public String[] solution(String[] players, String[] callings) {
+        Map<String, Integer> map = new HashMap<>(); //<이름,인덱스(등수-1)>
+        
+        for(int i=0;i<players.length;i++){
+            map.put(players[i],i);
+        }
+        
+        for(String calling : callings){
+            int idx = map.get(calling);
+            String tmp = players[idx-1];
+            map.put(players[idx],map.get(players[idx])-1); //등수를 바꿔준다.
+            map.put(tmp,map.get(tmp)+1);
+            players[idx-1]=players[idx];
+            players[idx]=tmp;       
+        }
+        
+        
+        return players;
+    }
+}
