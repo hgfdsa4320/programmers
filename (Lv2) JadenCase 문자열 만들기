@@ -1,0 +1,26 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+ 
+ class Solution {
+    public String solution(String s) {
+        StringBuilder answer = new StringBuilder();
+        
+        String[] arr = s.split("");
+        if(arr[0].equals(" ")){
+            answer.append(arr[0]);
+        }else{
+            answer.append(arr[0].toUpperCase());
+        }
+        
+        for(int i=1;i<arr.length;i++){
+            if(arr[i-1].equals(" ")){
+                answer.append(arr[i].toUpperCase());
+            }else{
+                answer.append(arr[i].toLowerCase());
+            }
+        }
+        
+        return answer.toString();
+    }
+}
