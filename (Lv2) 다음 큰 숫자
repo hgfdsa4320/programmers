@@ -1,0 +1,22 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+
+class Solution {
+    public int solution(int n) {
+        int answer = 0;
+        String s = Integer.toString(n,2);
+        s=s.replace("0","");
+        int countOne = s.length();
+        while (true) {
+            n++;
+            s = Integer.toString(n,2);
+            s=s.replace("0","");
+            if(s.length()==countOne){
+                answer=n;
+                break;
+            }
+        }
+        return answer;
+    }
+}
