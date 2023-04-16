@@ -1,0 +1,27 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+
+import java.util.*;
+
+class Solution {
+    public int solution(String[][] clothes) {
+        
+        Map<String, Set<String>> map = new HashMap<>(); //<의상의 종류, <의상의 이름들>>
+        for(String[] cloth : clothes){
+            if(!map.containsKey(cloth[1])){
+                map.put(cloth[1],new HashSet<>()); //map에 의상의 종류가 없으면 Set을 만든다.
+            }
+            map.get(cloth[1]).add(cloth[0]);
+        }
+        if(map.size()==1){ //의상 종류가 1개면 그냥 옷 수를 반환
+            return clothes.length;
+        }
+        int answer = 1;
+        for(String key : map.keySet()){ //key : 의상 종류
+            // 의상 종류의 개수+1(안입는 경우도 있으므로)을 곱해주며 경우의 수를 구한다.
+            answer *= map.get(key).size()+1; 
+        }
+        return answer-1; 
+    }
+}
