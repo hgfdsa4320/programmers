@@ -1,0 +1,24 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+ 
+ import java.util.*;
+
+class Solution {
+    public int[] solution(int n, long left, long right) {
+        int[] answer = new int[(int)(right-left+1)];
+        
+        int idx = 0;
+        for(long i=1;i<=n;i++){
+            if(idx==0) i = left/n+1; 
+            for(long j=1;j<=n;j++){
+                if(idx==0) j = left%n+1;
+                answer[idx++]=(int)Math.max(i,j);
+                if(idx==answer.length){
+                    return answer;
+                }
+            }
+        }
+        return answer;
+    }
+}
