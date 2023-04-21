@@ -1,0 +1,37 @@
+/**
+ * 문제 출처: 프로그래머스 코딩 테스트 연습, https://programmers.co.kr/learn/challenges
+ */
+
+import java.util.*;
+
+class Solution {
+    public int solution(String[] want, int[] number, String[] discount) {
+        int answer = 0;
+        Map<String, Integer> map = new HashMap<>(); // <원하는 제품, 개수>
+        Set<String> set = new HashSet<>(); // 원하는 제품이 무엇인지 넣어놓기 
+        
+        for(int i=0;i<want.length;i++){
+            map.put(want[i],number[i]);
+            set.add(want[i]);
+        }
+        int start =0;
+        Loop1:
+        for(int end=0;end<discount.length;end++){
+            if(end>=10) {  
+                if(set.contains(discount[start])){
+                    map.put(discount[start],map.getOrDefault(discount[start],0)+1);
+                }
+                start++;
+            }
+            
+            if(map.containsKey(discount[end])){
+                map.put(discount[end],map.get(discount[end])-1);
+            }
+            for(int tmp : map.values()){
+                if(tmp>0) continue Loop1;
+            }
+            answer++;
+       }
+        return answer;
+    }
+}
